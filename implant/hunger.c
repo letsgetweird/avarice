@@ -1,6 +1,11 @@
+#include <unistd.h>
+#include <pwd.h>
 #include <stdio.h>
 
-int main(void) {
-    printf("Hello world.");
+int main() {
+    struct passwd *pw = getpwuid(getuid());
+    if (pw != NULL) {
+        printf("User: %s\n", pw->pw_name);
+    }
     return 0;
 }
